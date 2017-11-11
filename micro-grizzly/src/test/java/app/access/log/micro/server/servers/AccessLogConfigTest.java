@@ -11,8 +11,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.aol.micro.server.MicroserverApp;
-import com.aol.micro.server.config.Microserver;
+import com.oath.micro.server.MicroserverApp;
+import com.oath.micro.server.config.Microserver;
 
 @Microserver(properties={"access.log.output", "${user.home}"})
 public class AccessLogConfigTest {
@@ -25,7 +25,7 @@ public class AccessLogConfigTest {
 	public void startServer() throws IOException {
 
 		logFile = new File(System.getProperty("user.home") + "/access-log-app-access.log");
-		FileUtils.forceDelete(logFile);
+		FileUtils.deleteQuietly(logFile);
 
 		assertThat(logFile.exists(), is(false));
 
